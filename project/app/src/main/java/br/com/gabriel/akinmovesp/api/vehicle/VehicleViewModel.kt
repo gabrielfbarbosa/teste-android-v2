@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.gabriel.akinmovesp.api.models.PosicaoResponse
+import br.com.gabriel.akinmovesp.api.models.PositionResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class VeiculosViewModel @Inject constructor(
-    private val getPosicoesVeiculosUseCase: GetPosicoesVeiculosUseCase
+class VehicleViewModel @Inject constructor(
+    private val getPosicoesVehicleUseCase: GetPosicoesVehicleUseCase
 ) : ViewModel() {
 
-    private val _posicoesVeiculos = MutableLiveData<PosicaoResponse?>()
-    val posicoesVeiculos: LiveData<PosicaoResponse?> = _posicoesVeiculos
+    private val _posicoesVeiculos = MutableLiveData<PositionResponse?>()
+    val posicoesVeiculos: LiveData<PositionResponse?> = _posicoesVeiculos
 
     private val _isLoading = MutableLiveData<Boolean>(true)
     val isLoading: LiveData<Boolean> = _isLoading
@@ -25,7 +25,7 @@ class VeiculosViewModel @Inject constructor(
 
     fun carregarPosicoesVeiculos() {
         viewModelScope.launch {
-            val result = getPosicoesVeiculosUseCase()
+            val result = getPosicoesVehicleUseCase()
             result.onSuccess { posicoes ->
                 _posicoesVeiculos.value = posicoes
                 _isLoading.value = false

@@ -10,7 +10,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import br.com.gabriel.akinmovesp.api.vehicle.VeiculosViewModel
+import br.com.gabriel.akinmovesp.api.vehicle.VehicleViewModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -20,7 +20,7 @@ import com.google.maps.android.compose.rememberMarkerState
 
 
 @Composable
-fun MapScreen(viewModel: VeiculosViewModel = hiltViewModel()) {
+fun MapScreen(viewModel: VehicleViewModel = hiltViewModel()) {
 
     val posicoesVeiculos by viewModel.posicoesVeiculos.observeAsState()
     val isLoading by viewModel.isLoading.observeAsState(true)
@@ -53,9 +53,9 @@ fun MapScreen(viewModel: VeiculosViewModel = hiltViewModel()) {
         ) {
             // Adicionar marcadores para cada veículo
             posicoesVeiculos?.l?.forEach { linha ->
-                linha.vs.forEach { veiculo ->
+                linha?.vs?.forEach { veiculo ->
 
-                    val stateVehiculos = rememberMarkerState(position = LatLng(veiculo.px, veiculo.py))
+                    val stateVehiculos = rememberMarkerState(position = LatLng(veiculo?.py!!, veiculo.px!!))
 
                     Marker(
                         state = stateVehiculos,

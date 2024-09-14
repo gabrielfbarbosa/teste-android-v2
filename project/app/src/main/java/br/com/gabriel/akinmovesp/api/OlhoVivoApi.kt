@@ -1,6 +1,6 @@
 package br.com.gabriel.akinmovesp.api
 
-import br.com.gabriel.akinmovesp.api.models.PosicaoResponse
+import br.com.gabriel.akinmovesp.api.models.PositionResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -12,6 +12,6 @@ interface OlhoVivoApi {
     suspend fun authenticate (@Query("token") token: String): Response<Boolean>
 
     @GET("Posicao")
-    suspend fun getPosicoesVeiculos(): Response<PosicaoResponse>
+    suspend fun getPositionVehicle(): Response<PositionResponse>
 
 }

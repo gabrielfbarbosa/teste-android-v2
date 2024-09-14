@@ -12,9 +12,8 @@ class AuthRepository @Inject constructor(
         return try {
             val response = api.authenticate(token)
             if (response.isSuccessful) {
-                val body = response.body()
                 Log.d("AuthRepository", "Response code: ${response.code()}, body: ${response.body()}")
-                body == true
+                response.body() == true
             } else {
                 false
             }
