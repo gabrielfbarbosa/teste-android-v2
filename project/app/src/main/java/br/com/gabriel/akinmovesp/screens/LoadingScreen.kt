@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import br.com.gabriel.akinmovesp.api.AuthViewModel
+import br.com.gabriel.akinmovesp.api.auth.AuthViewModel
 import br.com.gabriel.akinmovesp.navigate.Screen
 
 @Composable
@@ -19,14 +19,13 @@ fun LoadingScreen(navController: NavHostController, viewModel: AuthViewModel = h
     val authResult by viewModel.authResult.observeAsState()
 
     LaunchedEffect(Unit) {
-//        viewModel.authenticate("SEU_TOKEN_AQUI")
         viewModel.authenticate("4923d77245c50cf6587316acd575adce16573d38314f9b7dd9d7132119488f0c")
     }
 
     LaunchedEffect(authResult) {
         when (authResult) {
             true -> {
-                navController.navigate(Screen.Welcome.route) {
+                navController.navigate(Screen.Map.route) {
                     popUpTo(Screen.Loading.route) { inclusive = true }
                 }
             }

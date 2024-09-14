@@ -89,6 +89,10 @@ dependencies {
 
     //LiveData
     implementation("androidx.compose.runtime:runtime-livedata:1.7.1")
+
+    // Google Maps
+    implementation("com.google.maps.android:maps-compose:2.11.2")
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
 }
 
 kapt {

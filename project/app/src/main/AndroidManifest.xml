@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,6 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkinMoveSP"
         tools:targetApi="31">
+
+        <!-- Meta-data para a API Key do Google Maps -->
+        <!--android:value="SUA_API_KEY_AQUI"-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBjY6Pg38uAgVvg6tPV3lKlIIO71hNlWV0"
+            />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,5 +33,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -1,6 +1,7 @@
-package br.com.gabriel.akinmovesp.api
+package br.com.gabriel.akinmovesp.api.auth
 
 import android.util.Log
+import br.com.gabriel.akinmovesp.api.OlhoVivoApi
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(

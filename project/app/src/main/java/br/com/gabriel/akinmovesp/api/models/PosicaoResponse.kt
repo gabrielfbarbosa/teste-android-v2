@@ -1,4 +1,4 @@
-package br.com.gabriel.akinmovesp.models
+package br.com.gabriel.akinmovesp.api.models
 
 import com.squareup.moshi.Json
 

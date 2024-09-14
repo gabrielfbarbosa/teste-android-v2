@@ -5,8 +5,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.net.CookieManager
+import java.net.CookiePolicy
 import javax.inject.Singleton
 
 @Module
@@ -19,6 +22,17 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder().build()
+
+    /*@Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        val cookieManager = CookieManager()
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
+
+        return OkHttpClient.Builder()
+            .cookieJar(JavaNetCookieJar(cookieManager))
+            .build()
+    }*/
 
     @Provides
     @Singleton
