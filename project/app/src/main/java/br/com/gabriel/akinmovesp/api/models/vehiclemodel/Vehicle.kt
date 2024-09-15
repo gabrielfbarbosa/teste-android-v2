@@ -1,4 +1,4 @@
-package br.com.gabriel.akinmovesp.api.models
+package br.com.gabriel.akinmovesp.api.models.vehiclemodel
 
 data class Vehicle(
     val a: Boolean? = null,

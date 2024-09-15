@@ -19,13 +19,14 @@ fun LoadingScreen(navController: NavHostController, viewModel: AuthViewModel = h
     val authResult by viewModel.authResult.observeAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.authenticate("TOKEN")
+        viewModel.authenticate("Token")
+        //TODO: Token
     }
 
     LaunchedEffect(authResult) {
         when (authResult) {
             true -> {
-                navController.navigate(Screen.Map.route) {
+                navController.navigate(Screen.Main.route) {
                     popUpTo(Screen.Loading.route) { inclusive = true }
                 }
             }

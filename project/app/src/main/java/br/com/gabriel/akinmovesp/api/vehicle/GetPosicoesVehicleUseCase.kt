@@ -1,6 +1,6 @@
 package br.com.gabriel.akinmovesp.api.vehicle
 
-import br.com.gabriel.akinmovesp.api.models.PositionResponse
+import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponse
 import javax.inject.Inject
 
 class GetPosicoesVehicleUseCase @Inject constructor(
