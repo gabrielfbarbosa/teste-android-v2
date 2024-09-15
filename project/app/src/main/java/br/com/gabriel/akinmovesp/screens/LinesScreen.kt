@@ -43,7 +43,7 @@ fun LinesScreen(viewModel: LineViewModel = hiltViewModel()) {
         )
 
         Button(
-            onClick = { viewModel.buscarLinhas(searchQuery) },
+            onClick = { viewModel. getLines(searchQuery) },
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(end = 16.dp)

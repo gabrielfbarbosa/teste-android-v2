@@ -7,15 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.gabriel.akinmovesp.screens.LinesScreen
 import br.com.gabriel.akinmovesp.screens.MapScreen
-import br.com.gabriel.akinmovesp.screens.components.BottomNavItem
-import br.com.gabriel.akinmovesp.screens.components.BottomNavigationBar
+import br.com.gabriel.akinmovesp.navigate.bottomnavegate.BottomNavItem
+import br.com.gabriel.akinmovesp.navigate.bottomnavegate.BottomNavigationBar
+import br.com.gabriel.akinmovesp.screens.StopsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,6 +41,9 @@ fun MainScreen() {
             }
             composable(BottomNavItem.Lines.route) {
                 LinesScreen()
+            }
+            composable(BottomNavItem.Stops.route) {
+                StopsScreen()
             }
         }
     }
