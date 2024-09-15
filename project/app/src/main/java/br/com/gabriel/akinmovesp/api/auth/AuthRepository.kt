@@ -1,6 +1,7 @@
-package br.com.gabriel.akinmovesp.api
+package br.com.gabriel.akinmovesp.api.auth
 
 import android.util.Log
+import br.com.gabriel.akinmovesp.api.OlhoVivoApi
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
@@ -11,9 +12,8 @@ class AuthRepository @Inject constructor(
         return try {
             val response = api.authenticate(token)
             if (response.isSuccessful) {
-                val body = response.body()
                 Log.d("AuthRepository", "Response code: ${response.code()}, body: ${response.body()}")
-                body == true
+                response.body() == true
             } else {
                 false
             }
