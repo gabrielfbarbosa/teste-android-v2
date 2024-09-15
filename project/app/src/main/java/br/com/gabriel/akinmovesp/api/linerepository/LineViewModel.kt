@@ -23,7 +23,7 @@ class LineViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    fun buscarLinhas(termosBusca: String) {
+    fun getLines(termosBusca: String) {
         viewModelScope.launch {
             _isLoading.value = true
             val result = getLinesUseCase(termosBusca)
