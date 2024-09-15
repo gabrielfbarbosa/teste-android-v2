@@ -2,7 +2,7 @@ package br.com.gabriel.akinmovesp.api.vehicle
 
 import android.util.Log
 import br.com.gabriel.akinmovesp.api.OlhoVivoApi
-import br.com.gabriel.akinmovesp.api.models.PositionResponse
+import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponse
 import javax.inject.Inject
 
 class VehicleRepository @Inject constructor(

@@ -5,13 +5,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.gabriel.akinmovesp.MainScreen
 import br.com.gabriel.akinmovesp.screens.ErrorScreen
+import br.com.gabriel.akinmovesp.screens.LinesScreen
 import br.com.gabriel.akinmovesp.screens.LoadingScreen
-import br.com.gabriel.akinmovesp.screens.MapScreen
 
 sealed class Screen(val route: String) {
     object Loading : Screen("loading_screen")
-    object Map : Screen("map_screen")
+    object Main : Screen("main_screen")
+    object Lines : Screen("lines_screen")
     object Error : Screen("error_screen")
 }
 
@@ -21,9 +23,12 @@ fun AppNavHost(navController: NavHostController = rememberNavController()) {
         composable(Screen.Loading.route) {
             LoadingScreen(navController = navController)
         }
-        composable(Screen.Map.route) {
-            MapScreen()
+        composable(Screen.Main.route) {
+            MainScreen()
         }
+        /*composable(Screen.Lines.route) {
+            LinesScreen()
+        }*/
         composable(Screen.Error.route) {
             ErrorScreen()
         }

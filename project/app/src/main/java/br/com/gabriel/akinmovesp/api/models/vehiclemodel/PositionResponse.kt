@@ -1,4 +1,4 @@
-package br.com.gabriel.akinmovesp.api.models
+package br.com.gabriel.akinmovesp.api.models.vehiclemodel
 
 data class PositionResponse(
     val hr: String? = null,

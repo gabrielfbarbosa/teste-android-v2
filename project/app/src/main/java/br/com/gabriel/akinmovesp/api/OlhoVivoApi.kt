@@ -1,6 +1,6 @@
 package br.com.gabriel.akinmovesp.api
 
-import br.com.gabriel.akinmovesp.api.models.PositionResponse
+import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
