@@ -1,15 +1,15 @@
-package br.com.gabriel.akinmovesp.api.vehicle
+package br.com.gabriel.akinmovesp.api.vehiclerepository
 
 import android.util.Log
 import br.com.gabriel.akinmovesp.api.OlhoVivoApi
-import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponse
+import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponseModel
 import javax.inject.Inject
 
 class VehicleRepository @Inject constructor(
     private val api: OlhoVivoApi
 ) {
 
-    suspend fun getPositionVehicle(): Result<PositionResponse> {
+    suspend fun getPositionVehicle(): Result<PositionResponseModel> {
         return try {
             val response = api.getPositionVehicle()
             if (response.isSuccessful) {

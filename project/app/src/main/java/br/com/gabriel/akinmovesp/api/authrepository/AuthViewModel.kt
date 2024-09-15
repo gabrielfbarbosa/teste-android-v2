@@ -1,4 +1,4 @@
-package br.com.gabriel.akinmovesp.api.auth
+package br.com.gabriel.akinmovesp.api.authrepository
 
 
 import androidx.lifecycle.LiveData

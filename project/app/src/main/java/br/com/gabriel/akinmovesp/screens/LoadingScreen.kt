@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import br.com.gabriel.akinmovesp.api.auth.AuthViewModel
+import br.com.gabriel.akinmovesp.api.authrepository.AuthViewModel
 import br.com.gabriel.akinmovesp.navigate.Screen
 
 @Composable
