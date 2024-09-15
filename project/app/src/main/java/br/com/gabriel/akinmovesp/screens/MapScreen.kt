@@ -10,7 +10,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import br.com.gabriel.akinmovesp.api.vehicle.VehicleViewModel
+import br.com.gabriel.akinmovesp.api.vehiclerepository.VehicleViewModel
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap

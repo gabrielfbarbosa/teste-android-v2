@@ -1,33 +1,34 @@
-package br.com.gabriel.akinmovesp.api.vehicle
+package br.com.gabriel.akinmovesp.api.linerepository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponse
+import br.com.gabriel.akinmovesp.api.models.linemodel.LineModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class VehicleViewModel @Inject constructor(
-    private val getPosicoesVehicleUseCase: GetPosicoesVehicleUseCase
+class LineViewModel @Inject constructor(
+    private val getLinesUseCase: GetLinesUseCase
 ) : ViewModel() {
 
-    private val _posicoesVeiculos = MutableLiveData<PositionResponse?>()
-    val posicoesVeiculos: LiveData<PositionResponse?> = _posicoesVeiculos
+    private val _lines = MutableLiveData<List<LineModel>?>()
+    val lines: LiveData<List<LineModel>?> = _lines
 
-    private val _isLoading = MutableLiveData<Boolean>(true)
+    private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    fun carregarPosicoesVeiculos() {
+    fun buscarLinhas(termosBusca: String) {
         viewModelScope.launch {
-            val result = getPosicoesVehicleUseCase()
-            result.onSuccess { posicoes ->
-                _posicoesVeiculos.value = posicoes
+            _isLoading.value = true
+            val result = getLinesUseCase(termosBusca)
+            result.onSuccess { linhas ->
+                _lines.value = linhas
                 _isLoading.value = false
             }.onFailure { error ->
                 _errorMessage.value = error.message

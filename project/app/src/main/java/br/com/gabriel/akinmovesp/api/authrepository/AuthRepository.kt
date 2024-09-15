@@ -1,4 +1,4 @@
-package br.com.gabriel.akinmovesp.api.auth
+package br.com.gabriel.akinmovesp.api.authrepository
 
 import android.util.Log
 import br.com.gabriel.akinmovesp.api.OlhoVivoApi

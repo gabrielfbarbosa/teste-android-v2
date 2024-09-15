@@ -1,6 +1,6 @@
 package br.com.gabriel.akinmovesp.api.models.vehiclemodel
 
-data class Vehicle(
+data class VehiclePositionModel(
     val a: Boolean? = null,
     val p: Int? = null,
     val px: Double? = null,
