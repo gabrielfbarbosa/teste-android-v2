@@ -14,10 +14,10 @@
         android:theme="@style/Theme.AkinMoveSP"
         tools:targetApi="31">
 
-        <!--TODO: TODOToken -->
+        <!--TODO: Token -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBjY6Pg38uAgVvg6tPV3lKlIIO71hNlWV0"
+            android:value="Token"
             />
 
         <activity

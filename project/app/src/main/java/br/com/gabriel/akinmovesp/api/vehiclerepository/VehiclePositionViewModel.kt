@@ -27,7 +27,7 @@ class VehiclePositionViewModel @Inject constructor(
     val errorMessage: LiveData<String?> = _errorMessage
 
     private var refreshJob: Job? = null
-    private val refreshIntervalMillis: Long = 5000 // 5 segundos
+    private val refreshIntervalMillis: Long = 20000 // 20 segundos
 
     init {
         startAutomaticRefresh()
