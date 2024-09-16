@@ -1,16 +1,16 @@
 package br.com.gabriel.akinmovesp.api.stoprepository
 
 import br.com.gabriel.akinmovesp.api.OlhoVivoApi
-import br.com.gabriel.akinmovesp.api.models.stopmodel.StopModel
+import br.com.gabriel.akinmovesp.api.models.stopmodel.StopResponseModel
 import javax.inject.Inject
 
 class ParadaRepository @Inject constructor(
     private val api: OlhoVivoApi
 ) {
 
-    suspend fun getParadas(termosBusca: String): Result<List<StopModel>> {
+    suspend fun getParadas(termosBusca: String): Result<List<StopResponseModel>> {
         return try {
-            val response = api.getParadas(termosBusca)
+            val response = api.getStops(termosBusca)
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {

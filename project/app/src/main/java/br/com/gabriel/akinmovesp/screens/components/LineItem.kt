@@ -9,10 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.gabriel.akinmovesp.api.models.linemodel.LineModel
+import br.com.gabriel.akinmovesp.api.models.linemodel.LineResponseModel
 
 @Composable
-fun LineItem(line: LineModel) {
+fun LineItem(line: LineResponseModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

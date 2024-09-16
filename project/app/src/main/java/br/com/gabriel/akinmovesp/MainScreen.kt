@@ -14,6 +14,7 @@ import br.com.gabriel.akinmovesp.screens.LinesScreen
 import br.com.gabriel.akinmovesp.screens.MapScreen
 import br.com.gabriel.akinmovesp.navigate.bottomnavegate.BottomNavItem
 import br.com.gabriel.akinmovesp.navigate.bottomnavegate.BottomNavigationBar
+import br.com.gabriel.akinmovesp.screens.EstimatedScreen
 import br.com.gabriel.akinmovesp.screens.StopsScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,6 +45,9 @@ fun MainScreen() {
             }
             composable(BottomNavItem.Stops.route) {
                 StopsScreen()
+            }
+            composable(BottomNavItem.Estimated.route) {
+                EstimatedScreen()
             }
         }
     }

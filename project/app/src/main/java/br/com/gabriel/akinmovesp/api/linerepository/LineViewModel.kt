@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.gabriel.akinmovesp.api.models.linemodel.LineModel
+import br.com.gabriel.akinmovesp.api.models.linemodel.LineResponseModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,8 +14,8 @@ class LineViewModel @Inject constructor(
     private val getLinesUseCase: GetLinesUseCase
 ) : ViewModel() {
 
-    private val _lines = MutableLiveData<List<LineModel>?>()
-    val lines: LiveData<List<LineModel>?> = _lines
+    private val _lines = MutableLiveData<List<LineResponseModel>?>()
+    val lines: LiveData<List<LineResponseModel>?> = _lines
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
