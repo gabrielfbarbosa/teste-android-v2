@@ -19,7 +19,7 @@ fun LoadingScreen(navController: NavHostController, viewModel: AuthViewModel = h
     val authResult by viewModel.authResult.observeAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.authenticate("Token")
+        viewModel.authenticate("4923d77245c50cf6587316acd575adce16573d38314f9b7dd9d7132119488f0c")
         //TODO: Token
     }
 
