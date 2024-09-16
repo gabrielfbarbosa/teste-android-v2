@@ -1,6 +1,6 @@
 package br.com.gabriel.akinmovesp.api.models.stopmodel
 
-data class StopModel(
+data class StopResponseModel(
     val cp: Int? = null,
     val ed: String? = null,
     val np: String? = null,

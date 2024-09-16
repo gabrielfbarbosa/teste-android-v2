@@ -13,7 +13,8 @@ fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem.Map,
         BottomNavItem.Lines,
-        BottomNavItem.Stops
+        BottomNavItem.Stops,
+        BottomNavItem.Estimated
     )
 
     NavigationBar {

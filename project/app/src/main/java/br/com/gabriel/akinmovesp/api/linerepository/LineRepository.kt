@@ -1,14 +1,14 @@
 package br.com.gabriel.akinmovesp.api.linerepository
 
 import br.com.gabriel.akinmovesp.api.OlhoVivoApi
-import br.com.gabriel.akinmovesp.api.models.linemodel.LineModel
+import br.com.gabriel.akinmovesp.api.models.linemodel.LineResponseModel
 import javax.inject.Inject
 
 class LineRepository @Inject constructor(
     private val api: OlhoVivoApi
 ) {
 
-    suspend fun getLines(termosBusca: String): Result<List<LineModel>> {
+    suspend fun getLines(termosBusca: String): Result<List<LineResponseModel>> {
         return try {
             val response = api.getLines(termosBusca)
             if (response.isSuccessful) {

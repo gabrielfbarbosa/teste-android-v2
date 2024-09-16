@@ -1,7 +1,8 @@
 package br.com.gabriel.akinmovesp.api
 
-import br.com.gabriel.akinmovesp.api.models.linemodel.LineModel
-import br.com.gabriel.akinmovesp.api.models.stopmodel.StopModel
+import br.com.gabriel.akinmovesp.api.models.estimatedmodel.EstimatedResponseModel
+import br.com.gabriel.akinmovesp.api.models.linemodel.LineResponseModel
+import br.com.gabriel.akinmovesp.api.models.stopmodel.StopResponseModel
 import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
@@ -17,9 +18,14 @@ interface OlhoVivoApi {
     suspend fun getPositionVehicle(): Response<PositionResponseModel>
 
     @GET("Linha/Buscar")
-    suspend fun getLines(@Query("termosBusca") termosBusca: String): Response<List<LineModel>>
+    suspend fun getLines(@Query("termosBusca") termosBusca: String): Response<List<LineResponseModel>>
 
     @GET("Parada/Buscar")
-    suspend fun getParadas(@Query("termosBusca") termosBusca: String): Response<List<StopModel>>
+    suspend fun getStops(@Query("termosBusca") termosBusca: String): Response<List<StopResponseModel>>
+
+    @GET("Previsao/Parada")
+    suspend fun getEstimateds(
+        @Query("codigoParada") codigoParada: Int
+    ): Response<EstimatedResponseModel>
 }
 
