@@ -22,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.gabriel.akinmovesp.api.linerepository.LineViewModel
+import br.com.gabriel.akinmovesp.screens.components.CustomButton
+import br.com.gabriel.akinmovesp.screens.components.CustomOutlinedTextField
 import br.com.gabriel.akinmovesp.screens.components.LineItem
 
 @Composable
@@ -33,16 +35,16 @@ fun LinesScreen(viewModel: LineViewModel = hiltViewModel()) {
     var searchQuery by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        OutlinedTextField(
+        CustomOutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            label = { Text("Buscar Linhas") },
+            label = { Text("Código da Parada") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         )
 
-        Button(
+        CustomButton(
             onClick = { viewModel. getLines(searchQuery) },
             modifier = Modifier
                 .align(Alignment.End)

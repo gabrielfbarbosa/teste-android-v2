@@ -8,9 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -25,6 +30,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.gabriel.akinmovesp.api.estimatedrepository.EstimatedViewModel
+import br.com.gabriel.akinmovesp.screens.components.CustomButton
+import br.com.gabriel.akinmovesp.screens.components.CustomOutlinedTextField
 import br.com.gabriel.akinmovesp.screens.components.EstimatedContent
 
 @Composable
@@ -50,28 +57,22 @@ fun EstimatedScreen(viewModel: EstimatedViewModel = hiltViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
             // Campo de Entrada para o Código da Parada
-            OutlinedTextField(
+            CustomOutlinedTextField(
                 value = stopCode,
-                onValueChange = {
-                    stopCode = it
-                    if (viewModel.errorMessage.value != null) {
-                        viewModel.setErrorMessage(null) // Limpar a mensagem de erro ao digitar
-                    }
-                },
+                onValueChange = { stopCode = it },
                 label = { Text("Código da Parada") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
             )
 
-            Button(
+            CustomButton(
                 onClick = {
                     val stop = stopCode.toIntOrNull()
                     if (stop != null) {
                         codeStopValid = stop
                         viewModel.getEstimated(stop)
                     } else {
-                        // Exibir mensagem de erro se o código da parada não for válido
                         viewModel.setErrorMessage("Código da parada inválido")
                     }
                 },
