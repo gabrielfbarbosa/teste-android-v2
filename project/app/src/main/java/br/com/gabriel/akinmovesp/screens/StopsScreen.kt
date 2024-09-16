@@ -21,14 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.gabriel.akinmovesp.api.stoprepository.StopViewModel
+import br.com.gabriel.akinmovesp.screens.components.CustomButton
+import br.com.gabriel.akinmovesp.screens.components.CustomOutlinedTextField
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
-
-// ParadasScreen.kt
 
 @Composable
 fun StopsScreen(viewModel: StopViewModel = hiltViewModel()) {
@@ -43,16 +43,17 @@ fun StopsScreen(viewModel: StopViewModel = hiltViewModel()) {
 
     Column(modifier = Modifier.fillMaxSize()) {
         // Search Bar
-        OutlinedTextField(
+
+        CustomOutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            label = { Text("Buscar Paradas") },
+            label = { Text("Buscar Parada") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         )
 
-        Button(
+        CustomButton(
             onClick = { viewModel.buscarParadas(searchQuery) },
             modifier = Modifier
                 .align(Alignment.End)

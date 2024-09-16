@@ -1,6 +1,7 @@
 package br.com.gabriel.akinmovesp.navigate.bottomnavegate
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -17,7 +18,9 @@ fun BottomNavigationBar(navController: NavController) {
         BottomNavItem.Estimated
     )
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.primary
+    ) {
         val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
         items.forEach { item ->
             NavigationBarItem(
