@@ -1,70 +1,88 @@
 package br.com.gabriel.akinmovesp.api.vehiclerepository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import android.app.Application
+import android.location.Location
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.gabriel.akinmovesp.api.models.vehiclemodel.PositionResponseModel
+import br.com.gabriel.akinmovesp.data.VehicleClusterItem
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class VehiclePositionViewModel @Inject constructor(
-    private val getPosicoesVehicleUseCase: GetPositionsVehicleUseCase
-) : ViewModel() {
+    application: Application,
+    private val getPositionsVehicleUseCase: GetPositionsVehicleUseCase
+) : AndroidViewModel(application) {
 
-    private val _positionsVehicles = MutableLiveData<PositionResponseModel?>()
-    val vehiclesPositions: LiveData<PositionResponseModel?> = _positionsVehicles
+    private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
 
-    private val _isLoading = MutableLiveData<Boolean>(true)
-    val isLoading: LiveData<Boolean> = _isLoading
+    private val _userLocation = MutableStateFlow<Location?>(null)
+    val userLocation: StateFlow<Location?> = _userLocation
 
-    private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> = _errorMessage
+    private val _vehicleClusterItems = MutableStateFlow<List<VehicleClusterItem>>(emptyList())
+    val vehicleClusterItems: StateFlow<List<VehicleClusterItem>> = _vehicleClusterItems
 
-    private var refreshJob: Job? = null
-    private val refreshIntervalMillis: Long = 20000 // 20 segundos
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage
 
     init {
-        startAutomaticRefresh()
+        getLastKnownLocation()
+        getVehicles()
     }
 
-    private fun startAutomaticRefresh() {
-        // Evita múltiplas chamadas
-        if (refreshJob?.isActive == true) return
-
-        refreshJob = viewModelScope.launch {
-            while (isActive) {
-                getPositionsVehicles()
-                delay(refreshIntervalMillis)
+    @SuppressLint("MissingPermission")
+    fun getLastKnownLocation() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location: Location? ->
+                        _userLocation.value = location
+                        _isLoading.value = false
+                    }
+                    .addOnFailureListener { exception ->
+                        _errorMessage.value = exception.message
+                        _isLoading.value = false
+                    }
+            } catch (e: Exception) {
+                _errorMessage.value = e.message
+                _isLoading.value = false
             }
         }
     }
 
-    internal fun stopAutomaticRefresh() {
-        refreshJob?.cancel()
-        refreshJob = null
-    }
-
-    fun getPositionsVehicles() {
+    fun getVehicles() {
         viewModelScope.launch {
-            val result = getPosicoesVehicleUseCase()
+            _isLoading.value = true
+            _errorMessage.value = null
+            val result = getPositionsVehicleUseCase()
             result.onSuccess { positions ->
-                _positionsVehicles.value = positions
+                val clusterItems = positions.l?.flatMap { linha ->
+                    linha?.vs?.mapNotNull { veiculo ->
+                        veiculo?.let {
+                            VehicleClusterItem(
+                                positionBus = LatLng(it.py ?: 0.0, it.px ?: 0.0),
+                                titleBus = "Veículo ${it.p}",
+                                snippetBus = "Linha ${linha.c}"
+                            )
+                        }
+                    } ?: emptyList()
+                }?.take(100) ?: emptyList() // Limite para 100 marcadores
+                _vehicleClusterItems.value = clusterItems
                 _isLoading.value = false
             }.onFailure { error ->
                 _errorMessage.value = error.message
                 _isLoading.value = false
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        stopAutomaticRefresh()
     }
 }
